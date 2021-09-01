@@ -1,26 +1,13 @@
-trigger LessonTrigger on Lesson__c (before insert) {
-    for(Lesson__c l : Trigger.new){
-        if(l.Lesson__c == 'Group Adult Lesson (Morning)')
-        l.Court_Request__c = 1;
-        
-        if(l.Lesson__c == 'Group Adult Lesson (Evening)')
-        l.Court_Request__c = 2;
-        
-        if(l.Lesson__c == 'Group Kids Lesson (Morning)')
-        l.Court_Request__c = 3;
-        
-        if(l.Lesson__c == 'Group Kids Lesson (Evening)')
-        l.Court_Request__c = 4;
-        
-        if(l.Lesson__c == 'Group Kids Lesson (Evening)')
-        l.Court_Request__c = 5;
-        
-        if(l.Lesson__c == 'Group Adolescent Lesson (Morning)')
-        l.Court_Request__c = 6;
-        
-        else if(l.Lesson__c == 'Group Adolescent Lesson (Evening)')
-        l.Court_Request__c = 7;
-        
-        
+trigger PlayerTrigger on Player__c (after insert, after update) {
+List<Racquet_Restring_Request__c> requestList = new List<Racquet_Restring_Request__c>();
+    
+    for(Player__c player : Trigger.New){
+        if (player.Restring_Request__c == true){
+            requestList.add(new Racquet_Restring_Request__c(Name='New Request for '+ player.Name));
+        }
+    }
+    
+    if(requestList.size() > 0){
+        insert requestList;
     }
 }
