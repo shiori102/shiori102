@@ -2,16 +2,17 @@
 public class TestPlayerTrigger {
     @IsTest static void RacquetRequest(){
         
-        List<Racquet_Restring_Request__c> requestList = new List<Racquet_Restring_Request__c>();
         Player__c p = (new Player__c(Restring_Request__c = true));
+        insert p;
         
-        insert requestList;
-        
+
         Test.startTest();
-        Database.SaveResult[] result = Database.insert(requestList, false);
+        insert p;
         Test.stopTest();
+
+        List<Racquet_Restring_Request__c> requestList = [Select Id from Racquet_Restring_Request__c ];
         
-        System.assert(result[0].isSuccess());
+        System.assert(resultList.size()==1);
         
     }
     
