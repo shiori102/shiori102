@@ -1,3 +1,4 @@
+
 trigger PlayerTrigger on Player__c (after insert, after update) {
 List<Racquet_Restring_Request__c> requestList = new List<Racquet_Restring_Request__c>();
     
@@ -11,3 +12,4 @@ List<Racquet_Restring_Request__c> requestList = new List<Racquet_Restring_Reques
         insert requestList;
     }
 }
+
