@@ -1,0 +1,9 @@
+@IsTest
+public class TestLessonTrigger {
+    @IsTest static void AssignWrongCourt(){
+        Lesson__c l = new Lesson__c(Lesson__c='Group Adult Lesson (Morning)');
+            
+            
+            System.assertEquals(1, l.Court_Request__c);
+    }
+}
