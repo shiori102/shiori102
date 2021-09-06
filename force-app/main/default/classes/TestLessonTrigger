@@ -1,9 +1,28 @@
 @IsTest
 public class TestLessonTrigger {
-    @IsTest static void AssignWrongCourt(){
-        Lesson__c l = new Lesson__c(Lesson__c='Group Adult Lesson (Morning)');
-            
-            
-            System.assertEquals(1, l.Court_Request__c);
+    @IsTest static void AssignWrongCourts(){
+        List<Lesson__c> listOfLessons = new List<Lesson__c>();
+        Lesson__c GAdult = new Lesson__c(Lesson__c= 'Group Adult Lesson (Morning)');
+        
+        insert GAdult;
+
     }
+}
+
+@IsTest
+static void testMultiple(){
+    Test.startTest();
+    List<Lesson__c> returnList = [SELECT ID, Lesson__c FROM Lesson__c WHERE Lesson__c LIKE 'Group Adult Lesson (Morning)'];
+    system.debug('Group Adult Lesson (Evening)' + returnList());
+    system.assertEquals(50, returnList());
+    Test.stopTest();
+    
+}
+
+@IsTest
+static void testSingle(){
+    Test.startTest();
+    Lesson__c  returnSingleRecord = [SELECT ID, Lesson__c FROM Lesson__c WHERE Lesson__c LIKE 'Group Adult Lesson (Morning)'];
+    system.assertEquals(1, returnSingleRecord());
+    Test.stopTest();
 }
