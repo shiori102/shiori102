@@ -1,26 +1,26 @@
-trigger LessonTrigger on Lesson__c (before insert) {
-    for(Lesson__c l : Trigger.new){
-        if(l.Lesson__c == 'Group Adult Lesson (Morning)')
-        l.Court_Request__c = 1;
-        
-        if(l.Lesson__c == 'Group Adult Lesson (Evening)')
-        l.Court_Request__c = 2;
-        
-        if(l.Lesson__c == 'Group Kids Lesson (Morning)')
-        l.Court_Request__c = 3;
-        
-        if(l.Lesson__c == 'Group Kids Lesson (Evening)')
-        l.Court_Request__c = 4;
-        
-        if(l.Lesson__c == 'Group Kids Lesson (Evening)')
-        l.Court_Request__c = 5;
-        
-        if(l.Lesson__c == 'Group Adolescent Lesson (Morning)')
-        l.Court_Request__c = 6;
-        
-        else if(l.Lesson__c == 'Group Adolescent Lesson (Evening)')
-        l.Court_Request__c = 7;
-        
-        
+trigger LessonTrigger on Lesson__c (before insert, before update, before delete, after insert, after update, after delete, after undelete) {
+
+ switch on trigger.operationType {
+        when BEFORE_INSERT{
+             LessonTrigger.newLesson(Trigger.New);    
+        }
+        when BEFORE_UPDATE {
+             
+        }
+        when BEFORE_DELETE{
+            
+        }
+        when AFTER_INSERT{
+            
+        }
+        when AFTER_UPDATE{
+            
+        }
+        when AFTER_DELETE{
+            
+        }
+        when AFTER_UNDELETE{
+            
+        }
     }
 }

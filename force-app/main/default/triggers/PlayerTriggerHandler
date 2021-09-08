@@ -1,0 +1,18 @@
+//trigger that creates a new racquet request for the user
+public class PlayerTrigger{
+    
+List<Racquet_Restring_Request__c> requestList = new List<Racquet_Restring_Request__c>();
+    
+    for(Player__c player : Trigger.New){
+        if (player.Restring_Request__c == true){
+            requestList.add(new Racquet_Restring_Request__c(Name='New Request for '+ player.Name));
+        }
+    }
+    
+    if(requestList.size() > 0){
+        insert requestList;
+    }
+
+}
+
+

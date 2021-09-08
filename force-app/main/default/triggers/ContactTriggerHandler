@@ -1,0 +1,11 @@
+public class ContactTrigger {
+    public static List<Contact> contactList = new List<Contact>();
+    
+        if(c.FirstName ==null){
+            contactList.addError('Please provide your first name.');
+        }
+    
+}
+
+
+  

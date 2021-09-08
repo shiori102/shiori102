@@ -1,7 +1,26 @@
-trigger ContactTrigger on Contact (before insert, before update) {
-    for(Contact c : Trigger.New){
-        if(c.FirstName ==null){
-            c.addError('Please provide your first name.');
+trigger ContactTrigger on Contact (before insert, before update, before delete, after insert, after update, after delete, after undelete) {
+
+ switch on trigger.operationType {
+        when BEFORE_INSERT{
+            ContactTrigger.contactList(Trigger.New);     
+        }
+        when BEFORE_UPDATE {
+             ContactTrigger.contactList(Trigger.New);
+        }
+        when BEFORE_DELETE{
+            
+        }
+        when AFTER_INSERT{
+            
+        }
+        when AFTER_UPDATE{
+            
+        }
+        when AFTER_DELETE{
+            
+        }
+        when AFTER_UNDELETE{
+            
         }
     }
 }

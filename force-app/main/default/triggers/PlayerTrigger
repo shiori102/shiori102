@@ -1,15 +1,26 @@
-//trigger that creates a new racquet request for the user
-trigger PlayerTrigger on Player__c (after insert, after update) {
-List<Racquet_Restring_Request__c> requestList = new List<Racquet_Restring_Request__c>();
-    
-    for(Player__c player : Trigger.New){
-        if (player.Restring_Request__c == true){
-            requestList.add(new Racquet_Restring_Request__c(Name='New Request for '+ player.Name));
+trigger PlayerTrigger on Player__c (before insert, before update, before delete, after insert, after update, after delete, after undelete) {
+
+ switch on trigger.operationType {
+        when BEFORE_INSERT{
+                
+        }
+        when BEFORE_UPDATE {
+             
+        }
+        when BEFORE_DELETE{
+            
+        }
+        when AFTER_INSERT{
+            PlayerTrigger.requestList(Trigger.New); 
+        }
+        when AFTER_UPDATE{
+            PlayerTrigger.requestList(Trigger.New); 
+        }
+        when AFTER_DELETE{
+            
+        }
+        when AFTER_UNDELETE{
+            
         }
     }
-    
-    if(requestList.size() > 0){
-        insert requestList;
-    }
 }
-
